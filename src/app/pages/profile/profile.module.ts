@@ -8,6 +8,10 @@ import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
     declarations: [ProfileComponent],
-    imports: [CommonModule, SharedModule, ProfileRoutingModule]
+    imports: [
+        CommonModule,
+        SharedModule,
+        ProfileRoutingModule
+    ]
 })
 export class ProfileModule { }
