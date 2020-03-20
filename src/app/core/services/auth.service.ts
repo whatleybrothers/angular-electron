@@ -24,22 +24,23 @@ export class AuthService {
         logged in and setting up null when logged out */
         this.afAuth.authState.subscribe(user => {
             if (user) {
-                console.log('capi....');
                 this.userData = user;
-                localStorage.setItem('user', JSON.stringify(this.userData));
-                JSON.parse(localStorage.getItem('user'));
 
+                console.log('USER');
+                this.router.navigate(['home'])
+                localStorage.setItem('user', JSON.stringify(this.userData));
 
                 const userRef: AngularFirestoreDocument<User> = this.afs.doc<User>(`users/${user.uid}`);
                 userRef.valueChanges().subscribe((user: User) => {
                     this.currentUserDetails = user;
                     console.log('Got user details...');
                     console.log(user);
+                }, error => {
+                    console.log(error);
                 });
-
             } else {
+                console.log('NO USER');
                 localStorage.setItem('user', null);
-                JSON.parse(localStorage.getItem('user'));
             }
         }, error => {
             console.log(error);
