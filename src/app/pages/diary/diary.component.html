@@ -9,6 +9,24 @@
         </mat-list>
     </mat-sidenav>
     <mat-sidenav-content class="content-container">
-        <h3 class="mb-5">Diary</h3>
+        <div class="diary-section">
+            <div class="diary-item" *ngFor="let diaryEntry of diaryService?.getTodaysDiaryEntry() | async">
+                <img src="https://placekitten.com/200/200" alt="Avatar">
+                <div class="main-body">
+                    <div>User: {{diaryEntry?.userFullName}}</div>
+                    <div>{{diaryEntry?.comment}}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="comment-section">
+            <form class="form" [formGroup]="diaryEntryForm">
+                <mat-form-field class="fill">
+                    <mat-label>Leave a comment</mat-label>
+                    <textarea matInput [formControl]="diaryEntryForm.get('entry')" (keyup)="onKeyUp($event)">
+                  </textarea>
+                </mat-form-field>
+            </form>
+        </div>
     </mat-sidenav-content>
 </mat-sidenav-container>

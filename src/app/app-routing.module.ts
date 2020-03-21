@@ -9,6 +9,7 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component'
 import { ProfileComponent } from './pages/profile/profile.component';
 import { VerifyEmailComponent } from './pages/verify-email/verify-email.component';
 import { DiaryComponent } from './pages/diary/diary.component';
+import { WorkSpaceComponent } from './pages/work-space/work-space.component';
 
 // Import canActivate guard services
 import { AuthenticatedGuard } from './core/guards/authenticated.guard';
@@ -31,23 +32,28 @@ const routes: Routes = [
         canActivate: [AuthenticatedGuard]
     },
     {
-        path: 'home',
-        component: HomeComponent,
-        canActivate: [UnauthenticatedGuard]
-    },
-    {
-        path: 'profile',
-        component: ProfileComponent,
-        canActivate: [UnauthenticatedGuard]
-    },
-    {
         path: 'verify-email',
         component: VerifyEmailComponent,
         canActivate: [AuthenticatedGuard]
     },
     {
+        path: 'work-space',
+        component: WorkSpaceComponent,
+        canActivate: [AuthenticatedGuard]
+    },
+    {
+        path: 'home',
+        component: HomeComponent,
+        canActivate: [UnauthenticatedGuard]
+    },
+    {
         path: 'diary',
         component: DiaryComponent,
+        canActivate: [UnauthenticatedGuard]
+    },
+    {
+        path: 'profile',
+        component: ProfileComponent,
         canActivate: [UnauthenticatedGuard]
     },
     {

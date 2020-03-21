@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { SignInComponent } from './sign-in.component';
+import { WorkSpaceComponent } from './work-space.component';
 
 const routes: Routes = [
     {
-        path: 'sign-in',
-        component: SignInComponent
+        path: 'work-space',
+        component: WorkSpaceComponent
     }
 ];
 
@@ -15,4 +15,4 @@ const routes: Routes = [
     imports: [CommonModule, RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class SignInRoutingModule { }
+export class WorkSpaceRoutingModule { }

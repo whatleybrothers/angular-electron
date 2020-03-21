@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { DiaryEntry } from '../models/diaryEntry';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
+import * as firebase from 'firebase/app';
+import 'firebase/firestore';
 
 @Injectable({
     providedIn: 'root'
@@ -38,7 +40,7 @@ export class DiaryService {
             uid,
             comment,
             userFullName: this.authService.getUserFullName(),
-            createdTime: this.afs.firestore['_firebaseApp'].firebase_.firestore.FieldValue.serverTimestamp(),
+            createdTime: firebase.firestore.FieldValue.serverTimestamp(),
             updatedTime: ''
         };
         this.diaryEntryCollection.doc(uid).set(diaryEntry);

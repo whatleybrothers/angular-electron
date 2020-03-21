@@ -1,5 +1,5 @@
 .container {
-    height: 100%;
+    height: calc(100% - 64px);
     background: #eee;
 
     .side-nav-container {
@@ -14,6 +14,41 @@
         align-items: center;
         flex-direction: column;
         justify-content: center;
+
+        .diary-section {
+            width: 98%;
+            height: 100%;
+            overflow-y: scroll;
+
+            .diary-item {
+                display: flex;
+                flex-direction: row;
+                img {
+                    height: 50px;
+                    border-radius: 50%;
+                }
+
+                div {
+                    margin: 5px 0;
+                }
+            }
+        }
+
+
+        .comment-section {
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            width: 98%;
+
+            form {
+                width: 100%;
+
+                .fill {
+                    width: 100%;
+                }
+            }
+        }
 
     }
 }

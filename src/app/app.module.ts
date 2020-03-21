@@ -29,6 +29,7 @@ import { SignUpModule } from './pages/sign-up/sign-up.module';
 import { VerifyEmailModule } from './pages/verify-email/verify-email.module';
 import { ForgotPasswordModule } from './pages/forgot-password/forgot-password.module';
 import { DiaryModule } from './pages/diary/diary.module';
+import { WorkSpaceModule } from './pages/work-space/work-space.module'
 
 import { AppComponent } from './app.component';
 
@@ -54,6 +55,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
         VerifyEmailModule,
         ForgotPasswordModule,
         DiaryModule,
+        WorkSpaceModule,
 
         AppRoutingModule,
         AngularFireModule.initializeApp(AppConfig.firebaseConfig),

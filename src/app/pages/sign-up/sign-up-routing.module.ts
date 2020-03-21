@@ -4,15 +4,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { SignUpComponent } from './sign-up.component';
 
 const routes: Routes = [
-  {
-    path: 'sign-up',
-    component: SignUpComponent
-  }
+    {
+        path: 'sign-up',
+        component: SignUpComponent
+    }
 ];
 
 @NgModule({
-  declarations: [],
-  imports: [CommonModule, RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    declarations: [],
+    imports: [CommonModule, RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
-export class SignUpRoutingModule {}
+export class SignUpRoutingModule { }
