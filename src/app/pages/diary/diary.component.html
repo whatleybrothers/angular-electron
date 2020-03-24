@@ -1,20 +1,23 @@
 <mat-sidenav-container class="container" autosize>
     <mat-sidenav mode="side" opened class="side-nav-container">
-        <mat-list>
+        <mat-nav-list>
             <mat-list-item>Item 1</mat-list-item>
             <mat-divider></mat-divider>
             <mat-list-item>Item 2</mat-list-item>
             <mat-divider></mat-divider>
             <mat-list-item>Item 3</mat-list-item>
-        </mat-list>
+        </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content class="content-container">
-        <div class="diary-section">
+        <div class="diary-section" #scrollMe (scroll)="onScroll()">
             <div class="diary-item" *ngFor="let diaryEntry of diaryService?.getTodaysDiaryEntry() | async">
                 <img src="https://placekitten.com/200/200" alt="Avatar">
                 <div class="main-body">
-                    <div>User: {{diaryEntry?.userFullName}}</div>
-                    <div>{{diaryEntry?.comment}}</div>
+                    <div class="header">
+                        <span class="name">{{diaryEntry?.userFullName}}</span>
+                        <span>{{diaryEntry.createdTime?.toDate() | date: 'shortTime'}}</span>
+                    </div>
+                    <div class="content">{{diaryEntry?.comment}}</div>
                 </div>
             </div>
         </div>

@@ -3,10 +3,13 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { SignUpComponent } from './sign-up.component';
 
+import { AuthenticatedGuard } from '../../core/guards/authenticated.guard';
+
 const routes: Routes = [
     {
-        path: 'sign-up',
-        component: SignUpComponent
+        path: '',
+        component: SignUpComponent,
+        canActivate: [AuthenticatedGuard]
     }
 ];
 

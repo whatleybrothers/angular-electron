@@ -3,10 +3,13 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { VerifyEmailComponent } from './verify-email.component';
 
+import { AuthenticatedGuard } from '../../core/guards/authenticated.guard';
+
 const routes: Routes = [
     {
-        path: 'verify-email',
-        component: VerifyEmailComponent
+        path: '',
+        component: VerifyEmailComponent,
+        canActivate: [AuthenticatedGuard]
     }
 ];
 

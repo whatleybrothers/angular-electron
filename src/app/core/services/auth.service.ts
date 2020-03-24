@@ -27,7 +27,6 @@ export class AuthService {
                 this.userData = user;
 
                 console.log('USER');
-                this.router.navigate(['home'])
                 localStorage.setItem('user', JSON.stringify(this.userData));
 
                 const userRef: AngularFirestoreDocument<User> = this.afs.doc<User>(`users/${user.uid}`);
@@ -40,7 +39,7 @@ export class AuthService {
                 });
             } else {
                 console.log('NO USER');
-                localStorage.setItem('user', null);
+                localStorage.removeItem('user');
             }
         }, error => {
             console.log(error);
@@ -53,6 +52,7 @@ export class AuthService {
             .then((result) => {
                 if (result.user.emailVerified) {
                     this.ngZone.run(() => {
+                        localStorage.setItem('user', JSON.stringify(result.user));
                         this.router.navigate(['home']);
                     });
                 } else {
@@ -96,8 +96,12 @@ export class AuthService {
 
     // Returns true when user is looged in and email is verified
     get isLoggedIn(): boolean {
-        const user = JSON.parse(localStorage.getItem('user'));
-        return (user !== null && user.emailVerified !== false) ? true : false;
+        if (localStorage.getItem('user')) {
+            const user = JSON.parse(localStorage.getItem('user'));
+            return user.emailVerified;
+        } else {
+            return false;
+        }
     }
 
     // Sign in with Google

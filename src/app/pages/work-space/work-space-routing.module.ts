@@ -3,10 +3,13 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { WorkSpaceComponent } from './work-space.component';
 
+import { UnauthenticatedGuard } from '../../core/guards/unauthenticated.guard';
+
 const routes: Routes = [
     {
-        path: 'work-space',
-        component: WorkSpaceComponent
+        path: '',
+        component: WorkSpaceComponent,
+        canActivate: [UnauthenticatedGuard]
     }
 ];
 

@@ -3,10 +3,13 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { SignInComponent } from './sign-in.component';
 
+import { AuthenticatedGuard } from '../../core/guards/authenticated.guard';
+
 const routes: Routes = [
     {
-        path: 'sign-in',
-        component: SignInComponent
+        path: '',
+        component: SignInComponent,
+        canActivate: [AuthenticatedGuard]
     }
 ];
 

@@ -3,6 +3,7 @@ import { ElectronService } from './core/services';
 import { TranslateService } from '@ngx-translate/core';
 import { AppConfig } from '../environments/environment';
 import { DiaryService } from './core/services/diary.service';
+import { AuthService } from './core/services/auth.service';
 
 @Component({
     selector: 'app-root',
@@ -13,7 +14,8 @@ export class AppComponent {
     constructor(
         public electronService: ElectronService,
         private translate: TranslateService,
-        private diaryService: DiaryService
+        private diaryService: DiaryService,
+        public authService: AuthService
     ) {
         translate.setDefaultLang('en');
         console.log('AppConfig', AppConfig);
