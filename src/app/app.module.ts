@@ -22,16 +22,9 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { AppConfig } from '../environments/environment';
 
-import { HomeModule } from './pages/home/home.module';
-import { ProfileModule } from './pages/profile/profile.module';
-import { SignInModule } from './pages/sign-in/sign-in.module';
-import { SignUpModule } from './pages/sign-up/sign-up.module';
-import { VerifyEmailModule } from './pages/verify-email/verify-email.module';
-import { ForgotPasswordModule } from './pages/forgot-password/forgot-password.module';
-import { DiaryModule } from './pages/diary/diary.module';
-import { WorkSpaceModule } from './pages/work-space/work-space.module'
-
 import { AppComponent } from './app.component';
+
+import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -48,20 +41,13 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
         CoreModule,
         SharedModule,
 
-        HomeModule,
-        ProfileModule,
-        SignInModule,
-        SignUpModule,
-        VerifyEmailModule,
-        ForgotPasswordModule,
-        DiaryModule,
-        WorkSpaceModule,
-
         AppRoutingModule,
+
         AngularFireModule.initializeApp(AppConfig.firebaseConfig),
         AngularFireAnalyticsModule,
         AngularFireAuthModule,
         AngularFirestoreModule,
+        AngularFireAuthGuardModule,
 
         TranslateModule.forRoot({
             loader: {
@@ -71,7 +57,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
             }
         })
     ],
-    providers: [],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

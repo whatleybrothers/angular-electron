@@ -3,17 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 // Required components for which route services to be activated
 import { PageNotFoundComponent } from './shared/components';
-import { HomeComponent } from './pages/home/home.component';
-import { SignInComponent } from './pages/sign-in/sign-in.component';
-import { SignUpComponent } from './pages/sign-up/sign-up.component'
-import { ProfileComponent } from './pages/profile/profile.component';
-import { VerifyEmailComponent } from './pages/verify-email/verify-email.component';
-import { DiaryComponent } from './pages/diary/diary.component';
-import { WorkSpaceComponent } from './pages/work-space/work-space.component';
-
-// Import canActivate guard services
-import { AuthenticatedGuard } from './core/guards/authenticated.guard';
-import { UnauthenticatedGuard } from './core/guards/unauthenticated.guard';
 
 const routes: Routes = [
     {
@@ -23,38 +12,31 @@ const routes: Routes = [
     },
     {
         path: 'sign-in',
-        component: SignInComponent,
-        canActivate: [AuthenticatedGuard]
+        loadChildren: () => import('./pages/sign-in/sign-in.module').then(m => m.SignInModule)
     },
     {
         path: 'sign-up',
-        component: SignUpComponent,
-        canActivate: [AuthenticatedGuard]
+        loadChildren: () => import('./pages/sign-up/sign-up.module').then(m => m.SignUpModule)
     },
     {
         path: 'verify-email',
-        component: VerifyEmailComponent,
-        canActivate: [AuthenticatedGuard]
+        loadChildren: () => import('./pages/verify-email/verify-email.module').then(m => m.VerifyEmailModule)
     },
     {
         path: 'work-space',
-        component: WorkSpaceComponent,
-        canActivate: [AuthenticatedGuard]
+        loadChildren: () => import('./pages/work-space/work-space.module').then(m => m.WorkSpaceModule)
     },
     {
         path: 'home',
-        component: HomeComponent,
-        canActivate: [UnauthenticatedGuard]
+        loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)
     },
     {
         path: 'diary',
-        component: DiaryComponent,
-        canActivate: [UnauthenticatedGuard]
+        loadChildren: () => import('./pages/diary/diary.module').then(m => m.DiaryModule)
     },
     {
         path: 'profile',
-        component: ProfileComponent,
-        canActivate: [UnauthenticatedGuard]
+        loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule)
     },
     {
         path: '**',

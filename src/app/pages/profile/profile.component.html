@@ -1,29 +1,30 @@
 <mat-sidenav-container class="container" autosize>
     <mat-sidenav mode="side" opened class="side-nav-container">
-        <mat-list>
-            <mat-list-item>Profile</mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item>Users</mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item>Setup Creation</mat-list-item>
-        </mat-list>
+        <mat-nav-list>
+            <ng-container *ngFor="let item of sidebarOptions;">
+                <mat-list-item (click)='showMainSection(item)'>{{item}}</mat-list-item>
+                <mat-divider></mat-divider>
+            </ng-container>
+        </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content class="content-container">
-        <h3 class="mb-5">Profile</h3>
-        <div class="col-12 img-section">
-            <img src="https://placekitten.com/200/200" alt="Avatar">
-        </div>
-        <div class="col-12 mt-5">
-            <span>First Name: </span>
-            <span>{{authService.currentUserDetails?.firstName}}</span>
-        </div>
-        <div class="col-12 mt-2">
-            <span>Last Name: </span>
-            <span>{{authService.currentUserDetails?.lastName}}</span>
-        </div>
-        <div class="col-12 mt-2">
-            <span>Email: </span>
-            <span>{{authService.currentUserDetails?.email}}</span>
+        <div *ngIf="profileSection">
+            <h3 class="mb-5">Profile</h3>
+            <div class="col-12 img-section">
+                <img src="https://placekitten.com/200/200" alt="Avatar">
+            </div>
+            <div class="col-12 mt-5">
+                <span>First Name: </span>
+                <span>{{authService.currentUserDetails?.firstName}}</span>
+            </div>
+            <div class="col-12 mt-2">
+                <span>Last Name: </span>
+                <span>{{authService.currentUserDetails?.lastName}}</span>
+            </div>
+            <div class="col-12 mt-2">
+                <span>Email: </span>
+                <span>{{authService.currentUserDetails?.email}}</span>
+            </div>
         </div>
     </mat-sidenav-content>
 </mat-sidenav-container>

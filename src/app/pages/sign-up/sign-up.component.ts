@@ -33,8 +33,8 @@ export class SignUpComponent implements OnInit {
     //     { id: 7, name: 'Sunday' }
     // ];
     public signUpForm: FormGroup;
-    public hidePassword: boolean = false;
-    public hideConfirmPassword: boolean = false;
+    public hidePassword: boolean = true;
+    public hideConfirmPassword: boolean = true;
 
     constructor(
         public authService: AuthService

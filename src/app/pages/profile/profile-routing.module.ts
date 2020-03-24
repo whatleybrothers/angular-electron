@@ -3,10 +3,13 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { ProfileComponent } from './profile.component';
 
+import { UnauthenticatedGuard } from '../../core/guards/unauthenticated.guard';
+
 const routes: Routes = [
     {
-        path: 'profile',
-        component: ProfileComponent
+        path: '',
+        component: ProfileComponent,
+        canActivate: [UnauthenticatedGuard]
     }
 ];
 

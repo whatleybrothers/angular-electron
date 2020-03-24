@@ -33,7 +33,7 @@ export class DiaryService {
         return this.diaryEntries
     }
 
-    createDiaryEntry(comment: string) {
+    createDiaryEntry(comment: string): Promise<any> {
         // Persist a document id
         const uid = this.afs.createId();
         const diaryEntry: DiaryEntry = {
@@ -43,7 +43,7 @@ export class DiaryService {
             createdTime: firebase.firestore.FieldValue.serverTimestamp(),
             updatedTime: ''
         };
-        this.diaryEntryCollection.doc(uid).set(diaryEntry);
+        return this.diaryEntryCollection.doc(uid).set(diaryEntry);
     }
 
     deleteDiaryEntry() {

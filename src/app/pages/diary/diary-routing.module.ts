@@ -3,10 +3,13 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { DiaryComponent } from './diary.component';
 
+import { UnauthenticatedGuard } from '../../core/guards/unauthenticated.guard';
+
 const routes: Routes = [
     {
-        path: 'diary',
-        component: DiaryComponent
+        path: '',
+        component: DiaryComponent,
+        canActivate: [UnauthenticatedGuard]
     }
 ];
 

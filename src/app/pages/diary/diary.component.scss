@@ -23,13 +23,28 @@
             .diary-item {
                 display: flex;
                 flex-direction: row;
+                margin: 12px 0;
+
                 img {
-                    height: 50px;
-                    border-radius: 50%;
+                    height: 40px;
+                    border-radius: 10%;
                 }
 
-                div {
-                    margin: 5px 0;
+                .main-body {
+                    margin-left: 5px;
+
+                    .header {
+                        margin-bottom: 5px;
+
+                        .name {
+                            font-weight: bolder;
+                            margin-right: 5px;
+                        }
+                    }
+
+                    // div:last-child {
+
+                    // }
                 }
             }
         }
