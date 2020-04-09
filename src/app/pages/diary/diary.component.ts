@@ -1,11 +1,16 @@
 import { Component, OnInit, ViewChild, AfterViewChecked, ElementRef } from '@angular/core';
 import { DiaryService } from '../../core/services/diary.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CreateDialogComponent } from '../../shared/dialog/';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { DiaryGroup } from '../../core/models/diaryEntry';
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-diary',
     templateUrl: './diary.component.html',
-    styleUrls: ['./diary.component.scss']
+    styleUrls: ['./diary.component.scss'],
+    providers: [DatePipe]
 })
 export class DiaryComponent implements OnInit, AfterViewChecked {
 
@@ -13,14 +18,13 @@ export class DiaryComponent implements OnInit, AfterViewChecked {
     @ViewChild('scrollMe') private myScrollContainer: ElementRef;
     private disableScrollDown = false
 
-    constructor(public diaryService: DiaryService) { }
+    constructor(
+        public diaryService: DiaryService,
+        public matDialog: MatDialog
+    ) { }
 
     ngOnInit(): void {
         this.setupForm();
-
-        this.diaryService.diaryEntries.subscribe((res) => {
-            console.log(res);
-        });
     }
 
     ngAfterViewChecked() {
@@ -29,15 +33,16 @@ export class DiaryComponent implements OnInit, AfterViewChecked {
 
     public setupForm() {
         this.diaryEntryForm = new FormGroup({
-            entry: new FormControl('', [
-                Validators.required
-            ])
+            entry: new FormControl('')
         });
+    }
+
+    public selectDiaryGroup(group: DiaryGroup) {
+        this.diaryService.setDiaryEntries(group);
     }
 
     public onKeyUp(event: any) {
         if (event.key === 'Enter') {
-            console.log(event);
             this.diaryService.createDiaryEntry(this.diaryEntryForm.value.entry)
                 .then(() => {
                     this.diaryEntryForm.reset();
@@ -67,5 +72,18 @@ export class DiaryComponent implements OnInit, AfterViewChecked {
         try {
             this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
         } catch (err) { }
+    }
+
+    public addDiaryGroup() {
+        const dialogRef = this.matDialog.open(CreateDialogComponent, {
+            width: '500px'
+        });
+
+        dialogRef.afterClosed()
+            .subscribe((result) => {
+                console.log('The dialog was closed');
+                // this.animal = result;
+                console.log(result);
+            });
     }
 }

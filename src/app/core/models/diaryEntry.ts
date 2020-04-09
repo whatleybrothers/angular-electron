@@ -5,3 +5,11 @@ export interface DiaryEntry {
     createdTime: any;
     updatedTime: any;
 }
+
+export interface DiaryGroup {
+    uid: string;
+    name: string;
+    description: string
+    createdTime: any;
+    updatedTime: any;
+}

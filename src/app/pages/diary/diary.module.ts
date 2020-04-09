@@ -7,7 +7,13 @@ import { DiaryComponent } from './diary.component';
 import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
-    declarations: [DiaryComponent],
-    imports: [CommonModule, SharedModule, DiaryRoutingModule]
+    declarations: [
+        DiaryComponent
+    ],
+    imports: [
+        CommonModule,
+        SharedModule,
+        DiaryRoutingModule
+    ]
 })
 export class DiaryModule { }

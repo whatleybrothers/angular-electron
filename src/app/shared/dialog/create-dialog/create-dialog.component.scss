@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    min-width: 150px;
+    width: 100%;
+
+
+    .fill {
+        width: 350px;
+    }
+
+}
+
+.btn-section {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}

@@ -7,7 +7,9 @@ import { ProfileComponent } from './profile.component';
 import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
-    declarations: [ProfileComponent],
+    declarations: [
+        ProfileComponent
+    ],
     imports: [
         CommonModule,
         SharedModule,
