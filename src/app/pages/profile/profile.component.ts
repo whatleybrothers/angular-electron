@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../core/services/auth.service';
+import { DiaryService } from '../../core/services/diary.service';
 
 @Component({
     selector: 'app-profile',
@@ -16,7 +17,8 @@ export class ProfileComponent implements OnInit {
     public sidebarOptions: string[] = ['Profile', 'Users', 'Account', 'Diary'];
 
     constructor(
-        public authService: AuthService
+        public authService: AuthService,
+        public diaryService: DiaryService
     ) { }
 
     ngOnInit(): void {

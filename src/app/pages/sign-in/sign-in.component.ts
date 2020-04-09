@@ -30,7 +30,6 @@ export class SignInComponent implements OnInit {
                 Validators.required,
             ])
         });
-
     }
 
     public isFormInvalid(field: string) {
