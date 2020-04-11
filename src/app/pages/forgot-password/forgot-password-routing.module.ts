@@ -8,7 +8,8 @@ import { AuthenticatedGuard } from '../../core/guards/authenticated.guard';
 const routes: Routes = [
     {
         path: '',
-        component: AuthenticatedGuard
+        component: ForgotPasswordComponent,
+        canActivate: [AuthenticatedGuard]
     }
 ];
 

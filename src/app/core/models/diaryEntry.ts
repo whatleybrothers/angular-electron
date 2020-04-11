@@ -1,6 +1,11 @@
-export interface DiaryEntry {
+export interface DiaryPost {
+    events: string;
+    particulars: string;
+    status: string;
+}
+
+export interface DiaryEntry extends DiaryPost {
     uid: string;
-    comment: string;
     userFullName: string;
     createdTime: any;
     updatedTime: any;
