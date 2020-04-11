@@ -3,8 +3,13 @@ import { DiaryService } from '../../core/services/diary.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CreateDialogComponent } from '../../shared/dialog/';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { DiaryGroup } from '../../core/models/diaryEntry';
+import { DiaryGroup, DiaryPost } from '../../core/models/diaryEntry';
 import { DatePipe } from '@angular/common';
+
+interface Food {
+    value: string;
+    viewValue: string;
+}
 
 @Component({
     selector: 'app-diary',
@@ -17,6 +22,12 @@ export class DiaryComponent implements OnInit, AfterViewChecked {
     public diaryEntryForm: FormGroup;
     @ViewChild('scrollMe') private myScrollContainer: ElementRef;
     private disableScrollDown = false
+
+    public foods: Food[] = [
+        { value: 'Dummy event 0', viewValue: 'Dummy event 0' },
+        { value: 'Dummy event 1', viewValue: 'Dummy event 1' },
+        { value: 'Dummy event 2', viewValue: 'Dummy event 2' }
+    ];
 
     constructor(
         public diaryService: DiaryService,
@@ -33,25 +44,33 @@ export class DiaryComponent implements OnInit, AfterViewChecked {
 
     public setupForm() {
         this.diaryEntryForm = new FormGroup({
-            entry: new FormControl('')
+            events: new FormControl('', [
+                Validators.required
+            ]),
+            particulars: new FormControl(''),
+            status: new FormControl('')
         });
     }
 
     public selectDiaryGroup(group: DiaryGroup) {
+        this.diaryEntryForm.reset();
         this.diaryService.setDiaryEntries(group);
     }
 
-    public onKeyUp(event: any) {
-        if (event.key === 'Enter') {
-            this.diaryService.createDiaryEntry(this.diaryEntryForm.value.entry)
-                .then(() => {
-                    this.diaryEntryForm.reset();
-                    this.disableScrollDown = false;
-                    this.scrollToBottom();
-                }).catch((err) => {
-                    console.log('Error: ' + err);
-                })
+    public onSubmit() {
+        const diaryPost: DiaryPost = {
+            events: this.diaryEntryForm.value.events,
+            particulars: this.diaryEntryForm.value.particulars,
+            status: this.diaryEntryForm.value.status
         }
+        this.diaryService.createDiaryEntry(diaryPost)
+            .then(() => {
+                this.diaryEntryForm.reset();
+                this.disableScrollDown = false;
+                this.scrollToBottom();
+            }).catch((err) => {
+                console.log('Error: ' + err);
+            });
     }
 
     public onScroll() {

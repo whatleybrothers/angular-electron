@@ -18,6 +18,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
+import { MatSelectModule } from '@angular/material/select';
+
 import { PageNotFoundComponent } from './components/';
 import { WebviewDirective } from './directives/';
 import { CreateDialogComponent } from './dialog/';
@@ -45,7 +47,8 @@ import { CreateDialogComponent } from './dialog/';
         MatDialogModule,
         MatToolbarModule,
         MatMenuModule,
-        MatButtonToggleModule
+        MatButtonToggleModule,
+        MatSelectModule
     ],
     exports: [
         TranslateModule,
@@ -64,7 +67,8 @@ import { CreateDialogComponent } from './dialog/';
         MatDialogModule,
         MatToolbarModule,
         MatMenuModule,
-        MatButtonToggleModule
+        MatButtonToggleModule,
+        MatSelectModule
     ]
 })
 export class SharedModule { }

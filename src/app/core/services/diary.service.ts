@@ -1,7 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { DiaryEntry, DiaryGroup } from '../models/diaryEntry';
+import { DiaryEntry, DiaryGroup, DiaryPost } from '../models/diaryEntry';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import * as firebase from 'firebase/app';
@@ -77,12 +77,14 @@ export class DiaryService {
         return this.diaryGroupCollection.doc(name).set(diaryGroup);
     }
 
-    createDiaryEntry(comment: string): Promise<any> {
+    createDiaryEntry(diaryPost: DiaryPost): Promise<any> {
         // Persist a document id
         const uid = this.afs.createId();
         const diaryEntry: DiaryEntry = {
             uid,
-            comment,
+            events: diaryPost.events,
+            particulars: diaryPost.particulars,
+            status: diaryPost.status,
             userFullName: this.authService.getUserFullName(),
             createdTime: firebase.firestore.FieldValue.serverTimestamp(),
             updatedTime: ''
