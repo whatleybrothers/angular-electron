@@ -16,7 +16,8 @@
     </mat-sidenav>
     <mat-sidenav-content class="content-container">
         <div class="diary-section" #scrollMe (scroll)="onScroll()">
-            <div class="diary-item" *ngFor="let diaryEntry of diaryService?.getDiaryEntries() | async">
+            <div class="diary-item" *ngFor="let diaryEntry of diaryService?.getDiaryEntries() | async; let last = last; let index = index">
+                <span class="position">{{index + 1}}</span>
                 <img src="https://placekitten.com/200/200" alt="Avatar">
                 <div class="main-body">
                     <div class="header-section">
@@ -36,6 +37,7 @@
                         <div class="particular-section" *ngIf="diaryEntry?.particulars">{{diaryEntry?.particulars}}</div>
                         <div *ngIf="diaryEntry?.status">{{diaryEntry?.status}}</div>
                     </div>
+                    <hr *ngIf="!last">
                 </div>
             </div>
         </div>
@@ -45,21 +47,22 @@
                 <mat-form-field class="select-field">
                     <mat-label>Events</mat-label>
                     <mat-select [formControl]="diaryEntryForm.get('events')">
-                        <mat-option *ngFor="let food of foods" [value]="food.value">
-                            {{food.viewValue}}
+                        <mat-option *ngFor="let event of eventOptions" [value]="event.value">
+                            {{event.viewValue}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field class="text-field">
                     <mat-label>Particulars</mat-label>
-                    <!-- <input matInput
-                        [formControl]="diaryEntryForm.get('particulars')" /> -->
                     <textarea matInput [formControl]="diaryEntryForm.get('particulars')"></textarea>
                 </mat-form-field>
                 <mat-form-field class="status-field">
-                    <mat-label>Status</mat-label>
-                    <input matInput
-                        [formControl]="diaryEntryForm.get('status')" />
+                    <mat-label>Events</mat-label>
+                    <mat-select [formControl]="diaryEntryForm.get('status')">
+                        <mat-option *ngFor="let status of statusOptions" [value]="status.value">
+                            {{status.viewValue}}
+                        </mat-option>
+                    </mat-select>
                 </mat-form-field>
             </form>
             <button
