@@ -19,13 +19,23 @@
             <div class="diary-item" *ngFor="let diaryEntry of diaryService?.getDiaryEntries() | async">
                 <img src="https://placekitten.com/200/200" alt="Avatar">
                 <div class="main-body">
-                    <div class="header">
-                        <span class="name">{{diaryEntry?.userFullName}}</span>
-                        <span>{{diaryEntry.createdTime?.toDate() | date: 'medium'}}</span>
+                    <div class="header-section">
+                        <div class="title-section">
+                            <span>Dummy Title</span>
+                            <br/>
+                            <span>{{diaryEntry?.userFullName}}</span>
+                        </div>
+                        <div class="time-section">
+                            <span>{{diaryEntry.createdTime?.toDate() | date: 'mediumDate'}}</span>
+                            <br/>
+                            <span>{{diaryEntry.createdTime?.toDate() | date: 'shortTime'}}</span>
+                        </div>
                     </div>
-                    <div class="content">{{diaryEntry?.events}}</div>
-                    <div class="content">{{diaryEntry?.particulars}}</div>
-                    <div class="content">{{diaryEntry?.status}}</div>
+                    <div class="content-section">
+                        <div>{{diaryEntry?.events}}</div>
+                        <div class="particular-section" *ngIf="diaryEntry?.particulars">{{diaryEntry?.particulars}}</div>
+                        <div *ngIf="diaryEntry?.status">{{diaryEntry?.status}}</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -42,8 +52,9 @@
                 </mat-form-field>
                 <mat-form-field class="text-field">
                     <mat-label>Particulars</mat-label>
-                    <input matInput
-                        [formControl]="diaryEntryForm.get('particulars')" />
+                    <!-- <input matInput
+                        [formControl]="diaryEntryForm.get('particulars')" /> -->
+                    <textarea matInput [formControl]="diaryEntryForm.get('particulars')"></textarea>
                 </mat-form-field>
                 <mat-form-field class="status-field">
                     <mat-label>Status</mat-label>

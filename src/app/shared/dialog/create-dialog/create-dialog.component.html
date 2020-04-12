@@ -12,5 +12,5 @@
     </form>
 </div>
 <div mat-dialog-actions class="btn-section">
-    <button mat-raised-button color="primary" (click)="onCreate()">Create</button>
+    <button mat-raised-button color="primary" [disabled]="diaryGroupForm.invalid" (click)="onCreate()">Create</button>
 </div>

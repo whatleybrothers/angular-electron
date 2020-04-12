@@ -32,19 +32,34 @@
 
                 .main-body {
                     margin-left: 5px;
+                    width: 100%;
 
-                    .header {
-                        margin-bottom: 5px;
+                    .header-section {
+                        padding-bottom: 5px;
+                        display: flex;
+                        justify-content: space-between;
 
-                        .name {
-                            font-weight: bolder;
-                            margin-right: 5px;
+                        .title-section {
+                            span:first-child {
+                                font-weight: bolder;
+                            }
+
+                            span:last-child {
+                                font-size: 14px;
+                            }
+                        }
+
+                        .time-section {
+                            text-align: right;
+                            font-size: 14px;
                         }
                     }
 
-                    // div:last-child {
-
-                    // }
+                    .content-section {
+                        .particular-section {
+                            padding-left: 4em
+                        }
+                    }
                 }
             }
         }
