@@ -19,22 +19,14 @@
             "dom"
         ]
     },
+    "files": [
+        "src/main.ts",
+        "src/polyfills.ts"
+    ],
     "include": [
-        "main.ts",
-        "src/**/*"
+        "src/**/*.d.ts"
     ],
     "exclude": [
         "node_modules"
     ]
-  },
-  "files": [
-    "src/main.ts",
-    "src/polyfills.ts"
-  ],
-  "include": [
-    "src/**/*.d.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
 }

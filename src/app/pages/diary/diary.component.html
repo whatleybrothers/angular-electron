@@ -27,9 +27,9 @@
                             <span>{{diaryEntry?.userFullName}}</span>
                         </div>
                         <div class="time-section">
-                            <span>{{diaryEntry.createdTime?.toDate() | date: 'mediumDate'}}</span>
+                            <span>{{diaryEntry.createdTime?.toDate() | date: 'fullDate'}}</span>
                             <br/>
-                            <span>{{diaryEntry.createdTime?.toDate() | date: 'shortTime'}}</span>
+                            <span>{{diaryEntry.createdTime?.toDate() | date: 'mediumTime'}}</span>
                         </div>
                     </div>
                     <div class="content-section">
