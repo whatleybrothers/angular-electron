@@ -1,6 +1,6 @@
 {
     "name": "angular-electron",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "description": "Angular 9 with Electron (Typescript + SASS + Hot Reload)",
     "homepage": "https://github.com/maximegris/angular-electron",
     "author": {
@@ -33,6 +33,7 @@
         "electron:linux": "npm run build:prod && electron-builder build --linux",
         "electron:windows": "npm run build:prod && electron-builder build --windows",
         "electron:mac": "npm run build:prod && electron-builder build --mac",
+        "electron:deploy": "npm run build:prod && electron-builder build --mac --win --publish always",
         "test": "ng test",
         "e2e": "npm run build:prod && cross-env TS_NODE_PROJECT='e2e/tsconfig.e2e.json' mocha --timeout 300000 --require ts-node/register e2e/**/*.e2e.ts",
         "version": "conventional-changelog -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",

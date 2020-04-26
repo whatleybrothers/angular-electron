@@ -14,8 +14,19 @@ export class HomeComponent implements OnInit {
 
     ngOnInit(): void { }
 
-    public goToDiary() {
-        this.router.navigate(['diary']);
+    public goToPage(page: string) {
+        switch (page) {
+            case 'DIARY':
+                this.router.navigate(['diary']);
+                break;
+            case 'SCHEDULE':
+                this.router.navigate(['schedule']);
+                break;
+            case 'ANALYTICS':
+                this.router.navigate(['analytics']);
+                break;
+            default:
+        }
     }
 
 }

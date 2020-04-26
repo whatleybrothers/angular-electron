@@ -1,12 +1,25 @@
-<div class="wrapper">
-    <div class="box" (click)="goToDiary()">
-        <h3>Diary</h3>
+<div class="main-section">
+    <img src="https://placekitten.com/200/200" alt="Avatar">
+    <h1>Welcome!!!</h1>
+
+    <div class="wrapper">
+        <div class="box" (click)="goToPage('DIARY')">
+            <h3>Diary</h3>
+        </div>
+        <div class="box b" (click)="goToPage('SCHEDULE')">
+            <h3>Schedule</h3>
+        </div>
+        <div class="box c">
+            <h3>Report</h3>
+        </div>
+        <div class="box d" (click)="goToPage('ANALYTICS')">
+            <h3>Analytics</h3>
+        </div>
+        <div class="box e">
+            <h3>FAQ</h3>
+        </div>
+        <div class="box f">
+            <h3>Tutorial</h3>
+        </div>
     </div>
-    <div class="box b">
-        <h3>Schedule</h3>
-    </div>
-    <div class="box c">C</div>
-    <div class="box d">D</div>
-    <div class="box e">E</div>
-    <div class="box f">F</div>
 </div>
