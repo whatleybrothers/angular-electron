@@ -43,6 +43,14 @@ const routes: Routes = [
         loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule)
     },
     {
+        path: 'analytics',
+        loadChildren: () => import('./pages/analytics/analytics.module').then(m => m.AnalyticsModule)
+    },
+    {
+        path: 'schedule',
+        loadChildren: () => import('./pages/schedule/schedule.module').then(m => m.ScheduleModule)
+    },
+    {
         path: '**',
         component: PageNotFoundComponent
     }

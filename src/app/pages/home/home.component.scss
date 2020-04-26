@@ -1,3 +1,12 @@
+.main-section {
+    text-align: center;
+
+    img {
+        border-radius: 50%;
+        margin-top: 20px;
+    }
+}
+
 .wrapper {
     display: grid;
     grid-template-columns: 25% 25% 25%;
@@ -13,7 +22,6 @@
         border-radius: 5px;
         padding: 20px;
         font-size: 150%;
-        height: 200px;
         cursor: pointer;
     }
 }
