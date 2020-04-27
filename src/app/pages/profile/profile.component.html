@@ -9,22 +9,102 @@
     </mat-sidenav>
     <mat-sidenav-content class="content-container">
         <div *ngIf="profileSection">
-            <h3 class="mb-5">Profile</h3>
-            <div class="col-12 img-section">
-                <img src="https://placekitten.com/200/200" alt="Avatar">
-            </div>
-            <div class="col-12 mt-5">
-                <span>First Name: </span>
-                <span>{{authService.currentUserDetails?.firstName}}</span>
-            </div>
-            <div class="col-12 mt-2">
-                <span>Last Name: </span>
-                <span>{{authService.currentUserDetails?.lastName}}</span>
-            </div>
-            <div class="col-12 mt-2">
-                <span>Email: </span>
-                <span>{{authService.currentUserDetails?.email}}</span>
-            </div>
+            <mat-card class="profile-card">
+                <mat-card-header>
+                    <mat-card-title>Profile</mat-card-title>
+                </mat-card-header>
+                <div class="col-12 img-section">
+                    <img src="https://placekitten.com/200/200" alt="Avatar">
+                </div>
+                <mat-card-content class="profile-content-card">
+                    <div class="col-12 mt-5">
+                        <span>First Name: </span>
+                        <span>{{authService.currentUserDetails?.firstName}}</span>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <span>Last Name: </span>
+                        <span>{{authService.currentUserDetails?.lastName}}</span>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <span>Email: </span>
+                        <span>{{authService.currentUserDetails?.email}}</span>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div *ngIf="diarySection">
+            <h3 class="mb-5">Diary Setup</h3>
+
+            <mat-accordion>
+                <mat-expansion-panel *ngFor="let diaryGroup of diaryService?.getDiaryGroups() | async">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            {{diaryGroup.name}}
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            {{diaryGroup.description}}
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+
+                    <mat-list role="list">
+                        <mat-list-item role="listitem" *ngFor="let event of diaryGroup.events">{{event.viewValue}}</mat-list-item>
+                    </mat-list>
+                    <mat-divider></mat-divider>
+                    <mat-list role="list">
+                        <mat-list-item role="listitem" *ngFor="let state of diaryGroup.status">{{state.viewValue}}</mat-list-item>
+                    </mat-list>
+
+                    <mat-action-row>
+                        <button mat-button color="primary" (click)="showUpdateSection(diaryGroup)">Update</button>
+                    </mat-action-row>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+        <div *ngIf="diarySectionUpdate">
+            <mat-card class="diary-group-update-card">
+                <mat-card-header>
+                    <mat-card-title>Diary Update {{this.diaryGroupToUpdate.name}}</mat-card-title>
+                </mat-card-header>
+
+                <mat-list role="list">
+                    <mat-list-item role="listitem">
+                        <h5>Events</h5>
+                    </mat-list-item>
+                    <mat-list-item role="listitem" *ngFor="let event of eventsList; let i = index">
+                        <mat-icon mat-list-icon (click)="removeItem('EVENT', i)">clear</mat-icon>
+                        <span>{{event.viewValue}}</span>
+                    </mat-list-item>
+                </mat-list>
+                <mat-form-field class="fill">
+                    <mat-label>New Event</mat-label>
+                    <input matInput [formControl]="eventForm.get('newEvent')">
+                    <button mat-icon-button matSuffix (click)="addNewEvent()">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </mat-form-field>
+                <mat-divider></mat-divider>
+                <mat-list role="list">
+                    <mat-list-item role="listitem">
+                        <h5>Statuses</h5>
+                    </mat-list-item>
+                    <mat-list-item role="listitem" *ngFor="let status of statusList; let i = index">
+                        <mat-icon mat-list-icon (click)="removeItem('STATUS', i)">clear</mat-icon>
+                        <span>{{status.viewValue}}</span>
+                    </mat-list-item>
+                </mat-list>
+                <mat-form-field class="fill">
+                    <mat-label>New Status</mat-label>
+                    <input matInput [formControl]="statusForm.get('newStatus')">
+                    <button mat-icon-button matSuffix (click)="addNewStatus()">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </mat-form-field>
+
+                <mat-card-actions class="card-actions">
+                    <button mat-button color="primary" (click)="updateDiaryGroup()">Update</button>
+                    <button mat-button color="warn" (click)="cancelUpdateDiaryGroup()">Cancel</button>
+                  </mat-card-actions>
+            </mat-card>
         </div>
     </mat-sidenav-content>
 </mat-sidenav-container>

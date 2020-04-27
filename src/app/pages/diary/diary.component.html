@@ -14,6 +14,7 @@
             </mat-list-item>
         </mat-nav-list>
     </mat-sidenav>
+
     <mat-sidenav-content class="content-container">
         <div class="diary-section" #scrollMe (scroll)="onScroll()">
             <div class="diary-item" *ngFor="let diaryEntry of diaryService?.getDiaryEntries() | async; let last = last; let index = index">
@@ -42,12 +43,12 @@
             </div>
         </div>
 
-        <div class="comment-section">
+        <div class="comment-section" *ngIf="this.diaryService.selectedDiaryGroup | async as diaryGroup">
             <form class="form" [formGroup]="diaryEntryForm">
                 <mat-form-field class="select-field">
                     <mat-label>Events</mat-label>
                     <mat-select [formControl]="diaryEntryForm.get('events')">
-                        <mat-option *ngFor="let event of eventOptions" [value]="event.value">
+                        <mat-option *ngFor="let event of diaryGroup.events" [value]="event.value">
                             {{event.viewValue}}
                         </mat-option>
                     </mat-select>
@@ -59,7 +60,7 @@
                 <mat-form-field class="status-field">
                     <mat-label>Events</mat-label>
                     <mat-select [formControl]="diaryEntryForm.get('status')">
-                        <mat-option *ngFor="let status of statusOptions" [value]="status.value">
+                        <mat-option *ngFor="let status of diaryGroup.status" [value]="status.value">
                             {{status.viewValue}}
                         </mat-option>
                     </mat-select>

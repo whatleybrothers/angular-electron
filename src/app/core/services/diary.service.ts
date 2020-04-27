@@ -1,5 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { DiaryEntry, DiaryGroup, DiaryPost } from '../models/diaryEntry';
 import { Observable } from 'rxjs';
@@ -16,6 +16,8 @@ export class DiaryService {
 
     private diaryGroupCollection: AngularFirestoreCollection<DiaryGroup>;
     diaryGroups: Observable<DiaryGroup[]>;
+    // private selectedDiaryGroup: AngularFirestoreDocument<DiaryGroup>;
+    selectedDiaryGroup: Observable<DiaryGroup>;
     private diaryEntryCollection: AngularFirestoreCollection<DiaryEntry>;
     diaryEntries: Observable<DiaryEntry[]>;
 
@@ -43,7 +45,13 @@ export class DiaryService {
                     .orderBy('createdTime', 'asc')
                     .limit(50);
             });
+        this.selectedDiaryGroup = this.diaryGroupCollection.doc<DiaryGroup>('general').valueChanges()
         this.diaryEntries = this.diaryEntryCollection.valueChanges();
+    }
+
+
+    public createId(): string {
+        return this.afs.createId();
     }
 
     public getDiaryGroups(): Observable<DiaryGroup[]> {
@@ -63,6 +71,7 @@ export class DiaryService {
                     .limit(50);
             });
         this.diaryEntries = this.diaryEntryCollection.valueChanges();
+        this.selectedDiaryGroup = this.diaryGroupCollection.doc<DiaryGroup>(diaryGroup.name).valueChanges();
     }
 
     createDiaryGroup(name: string, description: string): Promise<any> {
@@ -71,10 +80,27 @@ export class DiaryService {
             uid,
             name: name.replace(/\s/g, ''),
             description,
+            events: [],
+            status: [],
             createdTime: firebase.firestore.FieldValue.serverTimestamp(),
             updatedTime: ''
         };
         return this.diaryGroupCollection.doc(name).set(diaryGroup);
+    }
+
+    updateDiaryGroup(diaryGroup: DiaryGroup) {
+
+        const newDiaryGroup: DiaryGroup = {
+            uid: diaryGroup.uid,
+            name: diaryGroup.name,
+            description: diaryGroup.description,
+            events: diaryGroup.events || [],
+            status: diaryGroup.status || [],
+            createdTime: diaryGroup.createdTime,
+            updatedTime: firebase.firestore.FieldValue.serverTimestamp()
+        };
+
+        return this.diaryGroupCollection.doc(newDiaryGroup.name).update(newDiaryGroup);
     }
 
     createDiaryEntry(diaryPost: DiaryPost): Promise<any> {
