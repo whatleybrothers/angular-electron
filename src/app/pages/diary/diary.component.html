@@ -4,7 +4,7 @@
             <ng-container *ngFor="let diaryGroup of diaryService?.getDiaryGroups() | async">
                 <mat-list-item (click)="selectDiaryGroup(diaryGroup)">
                     <mat-icon mat-list-icon>folder</mat-icon>
-                    <div mat-line>{{diaryGroup.name}}</div>
+                    <div mat-line>{{diaryGroup.displayName}}</div>
                 </mat-list-item>
                 <mat-divider></mat-divider>
             </ng-container>
@@ -46,7 +46,7 @@
         <div class="comment-section" *ngIf="this.diaryService.selectedDiaryGroup | async as diaryGroup">
             <form class="form" [formGroup]="diaryEntryForm">
                 <mat-form-field class="select-field">
-                    <mat-label>Events</mat-label>
+                    <mat-label>Event</mat-label>
                     <mat-select [formControl]="diaryEntryForm.get('events')">
                         <mat-option *ngFor="let event of diaryGroup.events" [value]="event.value">
                             {{event.viewValue}}
@@ -58,7 +58,7 @@
                     <textarea matInput [formControl]="diaryEntryForm.get('particulars')"></textarea>
                 </mat-form-field>
                 <mat-form-field class="status-field">
-                    <mat-label>Events</mat-label>
+                    <mat-label>Status</mat-label>
                     <mat-select [formControl]="diaryEntryForm.get('status')">
                         <mat-option *ngFor="let status of diaryGroup.status" [value]="status.value">
                             {{status.viewValue}}

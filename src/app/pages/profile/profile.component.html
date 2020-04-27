@@ -14,7 +14,7 @@
                     <mat-card-title>Profile</mat-card-title>
                 </mat-card-header>
                 <div class="col-12 img-section">
-                    <img src="https://placekitten.com/200/200" alt="Avatar">
+                    <img src="https://picsum.photos/200/200" alt="Avatar">
                 </div>
                 <mat-card-content class="profile-content-card">
                     <div class="col-12 mt-5">
@@ -39,7 +39,7 @@
                 <mat-expansion-panel *ngFor="let diaryGroup of diaryService?.getDiaryGroups() | async">
                     <mat-expansion-panel-header>
                         <mat-panel-title>
-                            {{diaryGroup.name}}
+                            {{diaryGroup.displayName}}
                         </mat-panel-title>
                         <mat-panel-description>
                             {{diaryGroup.description}}
@@ -63,7 +63,7 @@
         <div *ngIf="diarySectionUpdate">
             <mat-card class="diary-group-update-card">
                 <mat-card-header>
-                    <mat-card-title>Diary Update {{this.diaryGroupToUpdate.name}}</mat-card-title>
+                    <mat-card-title>Diary Update {{this.diaryGroupToUpdate.displayName}}</mat-card-title>
                 </mat-card-header>
 
                 <mat-list role="list">
@@ -101,7 +101,7 @@
                 </mat-form-field>
 
                 <mat-card-actions class="card-actions">
-                    <button mat-button color="primary" (click)="updateDiaryGroup()">Update</button>
+                    <button mat-button color="primary" (click)="saveDiaryGroup()">Save</button>
                     <button mat-button color="warn" (click)="cancelUpdateDiaryGroup()">Cancel</button>
                   </mat-card-actions>
             </mat-card>

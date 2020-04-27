@@ -15,6 +15,7 @@ export interface DiaryPost {
 export interface DiaryGroup {
     uid: string;
     name: string;
+    displayName: string;
     description: string;
     events: OptionItems[];
     status: OptionItems[];

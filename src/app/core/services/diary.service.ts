@@ -74,18 +74,20 @@ export class DiaryService {
         this.selectedDiaryGroup = this.diaryGroupCollection.doc<DiaryGroup>(diaryGroup.name).valueChanges();
     }
 
-    createDiaryGroup(name: string, description: string): Promise<any> {
+    createDiaryGroup(displayName: string, description: string): Promise<any> {
+        const diaryName: string = displayName.replace(/\s/g, '');
         const uid = this.afs.createId();
         const diaryGroup: DiaryGroup = {
             uid,
-            name: name.replace(/\s/g, ''),
+            name: diaryName,
+            displayName,
             description,
             events: [],
             status: [],
             createdTime: firebase.firestore.FieldValue.serverTimestamp(),
             updatedTime: ''
         };
-        return this.diaryGroupCollection.doc(name).set(diaryGroup);
+        return this.diaryGroupCollection.doc(diaryName).set(diaryGroup);
     }
 
     updateDiaryGroup(diaryGroup: DiaryGroup) {
@@ -93,6 +95,7 @@ export class DiaryService {
         const newDiaryGroup: DiaryGroup = {
             uid: diaryGroup.uid,
             name: diaryGroup.name,
+            displayName: diaryGroup.displayName,
             description: diaryGroup.description,
             events: diaryGroup.events || [],
             status: diaryGroup.status || [],

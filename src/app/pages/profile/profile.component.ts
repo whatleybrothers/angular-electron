@@ -72,7 +72,7 @@ export class ProfileComponent implements OnInit {
         const newValue = this.eventForm.get('newEvent').value;
         if (newValue) {
             this.eventsList.push({
-                value: 'event_' + this.diaryService.createId(),
+                value: newValue,
                 viewValue: newValue
             });
             this.eventForm.reset();
@@ -83,7 +83,7 @@ export class ProfileComponent implements OnInit {
         const newValue = this.statusForm.get('newStatus').value;
         if (newValue) {
             this.statusList.push({
-                value: 'status_' + this.diaryService.createId(),
+                value: newValue,
                 viewValue: newValue
             });
             this.statusForm.reset();
@@ -115,7 +115,7 @@ export class ProfileComponent implements OnInit {
         }
     }
 
-    public updateDiaryGroup() {
+    public saveDiaryGroup() {
         this.diaryService.updateDiaryGroup({
             ...this.diaryGroupToUpdate,
             ...{ events: this.eventsList },
