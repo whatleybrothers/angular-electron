@@ -13,10 +13,35 @@
         display: flex;
         align-items: center;
         flex-direction: column;
-        justify-content: center;
+        // justify-content: center;
+        margin-top: 20px;
 
-        img {
-            border-radius: 50%;
+        .profile-card {
+            text-align: center;
+
+            img {
+                border-radius: 50%;
+            }
+        }
+
+        .diary-group-update-card {
+            text-align: center;
+
+            .card-actions {
+                text-align: right;
+            }
+        }
+
+        & > div {
+            width: 500px;
+
+            .fill {
+                width: 95%;
+            }
+
+            .mat-list-icon {
+                cursor: pointer;
+            }
         }
     }
 }

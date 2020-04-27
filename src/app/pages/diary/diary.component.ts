@@ -23,18 +23,6 @@ export class DiaryComponent implements OnInit, AfterViewChecked {
     @ViewChild('scrollMe') private myScrollContainer: ElementRef;
     private disableScrollDown = false
 
-    public eventOptions: Food[] = [
-        { value: 'Dummy event 0', viewValue: 'Dummy event 0' },
-        { value: 'Dummy event 1', viewValue: 'Dummy event 1' },
-        { value: 'Dummy event 2', viewValue: 'Dummy event 2' }
-    ];
-
-    public statusOptions: Food[] = [
-        { value: 'Dummy status 0', viewValue: 'Dummy status 0' },
-        { value: 'Dummy status 1', viewValue: 'Dummy status 1' },
-        { value: 'Dummy status 2', viewValue: 'Dummy status 2' }
-    ];
-
     constructor(
         public diaryService: DiaryService,
         public matDialog: MatDialog
