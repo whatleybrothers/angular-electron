@@ -15,9 +15,9 @@ Bootstrap and package your project with Angular 9 and Electron 8 (Typescript + S
 
 Currently runs with:
 
-- Angular v9.1.1
-- Electron v8.2.1
-- Electron Builder v22.4.1
+- Angular v9.1.4
+- Electron v8.2.5
+- Electron Builder v22.6.0
 
 With this sample, you can :
 

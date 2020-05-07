@@ -4,6 +4,9 @@ import { Routes, RouterModule } from '@angular/router';
 // Required components for which route services to be activated
 import { PageNotFoundComponent } from './shared/components';
 
+import { HomeRoutingModule } from './home/home-routing.module';
+import { DetailRoutingModule } from './detail/detail-routing.module';
+
 const routes: Routes = [
     {
         path: '',
@@ -57,7 +60,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes, { useHash: true })],
-    exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes),
+  ],
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -1,7 +1,30 @@
+## 7.1.0 (2020-05-02)
+
+* feat/ VSCode : add Debugging config for man process (#465) + Karma ([acc62d9](https://github.com/maximegris/angular-electron/commit/acc62d9)), closes [#465](https://github.com/maximegris/angular-electron/issues/465)
+* fix/ Karma configuration to debug easily  ([273e752](https://github.com/maximegris/angular-electron/commit/273e752))
+
+
+
+## <small>7.0.5 (2020-04-26)</small>
+
+* [Bumped Version] 7.0.5 ([63eed52](https://github.com/maximegris/angular-electron/commit/63eed52))
+* Upgrade Angular 9.1.3 & Electron 8.2.3 ([00b9d43](https://github.com/maximegris/angular-electron/commit/00b9d43))
+
+
+
+## <small>7.0.4 (2020-04-20)</small>
+
+* [Bumped Version] 7.0.4 ([dbce7a0](https://github.com/maximegris/angular-electron/commit/dbce7a0))
+* ref/ make app reloading/working with and without usehash routing strategy ([386ce67](https://github.com/maximegris/angular-electron/commit/386ce67))
+* Transparent background issue fix for Linux ([4c0c169](https://github.com/maximegris/angular-electron/commit/4c0c169))
+
+
+
 ## <small>7.0.3 (2020-04-11)</small>
 
 * [Bumped Version] 7.0.3 ([6206066](https://github.com/maximegris/angular-electron/commit/6206066))
 * fix/ polyfills in tsconfig ([cf4f172](https://github.com/maximegris/angular-electron/commit/cf4f172))
+* misc/ changelog ([19f6027](https://github.com/maximegris/angular-electron/commit/19f6027))
 
 
 
